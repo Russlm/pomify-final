@@ -13,7 +13,7 @@ datasource db {
 model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
-  name    String
+  u_pass String
   task   Task[]
   session Session[]
   user_game users_game[]
@@ -22,9 +22,10 @@ model User {
 
 model Task {
   id      Int      @id @default(autoincrement())
+  description String 
   user   User   @relation(fields: [userId], references: [id])
-  date_created String 
-  date_finished String
+  date_created DateTime @db.Date 
+  date_finished DateTime @db.Date
   completed Boolean
   est_pomos Int
   userId Int 
@@ -51,7 +52,7 @@ model users_game {
 
 model game {
   id      Int      @id @default(autoincrement())
-  date_played DateTime 
+  date_played DateTime @db.Date
   game_type Int 
   score Int
   users_game users_game[]
