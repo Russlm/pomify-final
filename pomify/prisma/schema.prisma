@@ -9,3 +9,51 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String
+  task   Task[]
+  session Session[]
+  user_game users_game[]
+  @@map("Users")
+}
+
+model Task {
+  id      Int      @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  date_created String 
+  date_finished String
+  completed Boolean
+  est_pomos Int
+  userId Int 
+  @@map("Tasks")
+}
+
+
+model Session {
+  id      Int      @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  @@map("Sessions")
+}
+
+model users_game {
+  id      Int      @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  game   game   @relation(fields: [gameId], references: [id])
+  gameId Int
+
+  @@map ("User_games")
+}
+
+model game {
+  id      Int      @id @default(autoincrement())
+  date_played DateTime 
+  game_type Int 
+  score Int
+  users_game users_game[]
+  @@map("Games")
+}
