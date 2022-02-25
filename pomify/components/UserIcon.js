@@ -38,24 +38,12 @@ export default function Example() {
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    href='/tester'
+                    href='/statistics'
                     className={`${
                       active ? 'bg-gray-900' : ''
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
                   >
                     Progress
-                  </a>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    href='/tester'
-                    className={`${
-                      active ? 'bg-gray-900' : ''
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm text-white`}
-                  >
-                    Settings
                   </a>
                 )}
               </Menu.Item>
